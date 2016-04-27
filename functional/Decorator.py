@@ -7,9 +7,13 @@ import functools
 
 def log(func):
     def wrapper(*args, **kw):
-        print 'call %s():' % func.__name__
-        return func(*args, **kw)
-
+        try:
+            print 'begin %s():' % func.__name__
+            return func(*args, **kw)
+        except Exception,e:
+            raise e
+        finally:
+            print 'end'
     return wrapper
 
 
